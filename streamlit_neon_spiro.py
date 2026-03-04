@@ -108,7 +108,7 @@ def update(frame):
         sisä_jälki_coll.set_array(np.linspace(0, 1, len(segments)))
 
     ax.set_xlim (-2, 22) # (cx_i - 15, cx_i + 4)
-    ax.set_ylim(-2, 8)
+    ax.set_ylim(-3, 7)
     ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
     
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
@@ -125,7 +125,7 @@ if render_button:
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
         components.html(ani.to_jshtml(), height=900)
 else:
-    st.write("### T start: Adjust the sliders and press render")
+    st.write("### Start: adjust the sliders and press Render")
     # Näytetään vaikka staattinen kuva alkajaisiksi
     update(0)
     st.pyplot(fig)
