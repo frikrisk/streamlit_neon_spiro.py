@@ -19,6 +19,11 @@ st.markdown("""
 
 st.title("🛰️ Neon Spirograph")
 
+# --- ASETUKSET (Määrittele nämä koodin yläosassa) ---
+frames_lkm = 350       # Kuinka monta kuvaa lasketaan (pituus)
+aikakerroin = 0.035    # Kuinka paljon aika siirtyy per kuva (tarkkuus)
+interval_ms = 30       # Kuinka monta millisekuntia kuvien välillä on (nopeus)
+
 # --- 1. SIDEBAR-SÄÄTIMET (Määritellään muuttujat ennen käyttöä) ---
 st.sidebar.header("Parameters")
 R = st.sidebar.slider("Main Circle Radius (R)", 0.5, 2.0, 1.2)
@@ -121,9 +126,9 @@ with st.sidebar:
 if render_button:
     with st.spinner("Generating high-quality animation..."):
         # 150 framea riittää nyt kattamaan pitkän matkan, koska aikakerroin on suurempi
-        ani = FuncAnimation(fig, update, frames=frames_lkm, interval=30, blit=True)
+        ani = FuncAnimation(fig, update, frames=frames_lkm, interval=interval_ms, blit=True)
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
-        components.html(ani.to_jshtml(), height=800, scrolling=False)
+        components.html(ani.to_jshtml(), height=800,) # scrolling=False)
 else:
     st.write("### Start: adjust the sliders and press Render")
     # Näytetään vaikka staattinen kuva alkajaisiksi
