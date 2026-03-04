@@ -12,7 +12,6 @@ matplotlib.use('Agg')
 # 1. Poistetaan ylämarginaali ja optimoidaan tila
 st.markdown("""
     <style>
-    <style>
         /* Poistaa tyhjän tilan sivun yläreunasta */
         .block-container {
             padding-top: 0rem;
