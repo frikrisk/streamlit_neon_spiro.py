@@ -1,8 +1,13 @@
 import streamlit as st
+import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-import numpy as np
+from matplotlib.collections import LineCollection  # TÄMÄ PUUTTUU TODENNÄKÖISESTI
 import streamlit.components.v1 as components
+import matplotlib
+
+# macOS/Server-varmistus
+matplotlib.use('Agg')
 
 # Asetetaan otsikko
 st.title("Neon Spirograph Simulator")
