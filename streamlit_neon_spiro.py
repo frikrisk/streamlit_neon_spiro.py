@@ -19,7 +19,7 @@ st.markdown("""
             margin-top: -5rem; /* Nostaa sisältöä ylöspäin */
         }
         /* Piilottaa Streamlitin oman yläpalkin jos haluat */
-        header {visibility: hidden;}
+        # header {visibility: hidden;}
         /* Siirtää sisällön vasempaan reunaan */
         .main .block-container {
             max-width: 95%;
