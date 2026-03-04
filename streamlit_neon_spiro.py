@@ -39,6 +39,10 @@ fig, ax = plt.subplots(figsize=(10, 7))
 ax.set_aspect('equal')
 ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5) # ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
 
+# 3. Säädetään numeroiden ja merkkiasteikon (ticks) väri
+ax.tick_params(axis='both', colors='#888888', labelsize=10)
+ax.axis('on') # oli off, kokeillan on
+
 # Luodaan artistit (kuten aiemmin)
 iso_kehä, = ax.plot([], [], color='#96D7FF', lw=1.0)
 sisä_kehä, = ax.plot([], [], color='white', lw=1.2, ls='--', alpha=0.9)
