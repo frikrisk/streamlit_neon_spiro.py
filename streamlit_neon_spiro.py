@@ -102,10 +102,18 @@ def update(frame):
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
 
 # --- 4. ANIMAATION GENERONTIA ---
-# Streamlitissä frames kannattaa pitää kohtuullisena (esim. 300-400
-if st.sidebar.button("Render Animation"):
-    with st.spinner("Generating animation... This may take a few seconds."):
-        ani = FuncAnimation(fig, update, frames=150, interval=40, blit=True)
+# Pienennetään frames määrää ja lisätään nappula
+with st.sidebar:
+    render_button = st.button("🚀 Render Animation")
+
+if render_button:
+    with st.spinner("Calculating neon paths..."):
+        # frames=120 on hyvä kompromissi nopeuden ja keston välillä
+        ani = FuncAnimation(fig, update, frames=120, interval=50, blit=True)
+        # Kasvatetaan heightia, jotta soittimen säätimet mahtuvat varmasti
         components.html(ani.to_jshtml(), height=900)
 else:
-    st.info("Adjust parameters on the left and click 'Render Animation' to see the result.")
+    st.write("### Welcome! Adjust the sliders and press the button in the sidebar to start.")
+    # Näytetään vaikka staattinen kuva alkajaisiksi
+    update(0)
+    st.pyplot(fig)
