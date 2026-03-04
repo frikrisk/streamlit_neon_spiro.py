@@ -12,6 +12,15 @@ matplotlib.use('Agg')
 # 1. Poistetaan ylämarginaali ja optimoidaan tila
 st.markdown("""
     <style>
+    <style>
+        /* Poistaa tyhjän tilan sivun yläreunasta */
+        .block-container {
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+            margin-top: -5rem; /* Nostaa sisältöä ylöspäin */
+        }
+        /* Piilottaa Streamlitin oman yläpalkin jos haluat */
+        header {visibility: hidden;}
         /* Siirtää sisällön vasempaan reunaan */
         .main .block-container {
             max-width: 95%;
@@ -124,7 +133,14 @@ def update(frame):
 
     ax.set_xlim (-2, 25) # (cx_i - 15, cx_i + 4)
     ax.set_ylim(-3, 7)
-    ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5,) # alpha=0.5)
+    # Asetetaan näkyvä ruudukko
+    ax.grid(True, which='both', color='#555555', linestyle='--', linewidth=0.5)
+    # Varmistetaan, että ruudukko on piirrosten takana (zorder)
+    ax.set_axisbelow(True) 
+    
+    # Akselien rajat kuvakaappauksen perusteella (0 -> 25)
+    ax.set_xlim(-2, 25)
+    ax.set_ylim(-3, 7)
     
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
 
