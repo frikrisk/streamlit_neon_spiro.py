@@ -31,7 +31,7 @@ keltainen_vauhti = st.sidebar.slider("Yellow Tracer Speed", 1.0, 20.0, 10.0)
 # Kiinteät parametrit
 d_sis, d_ulk = 0.4, 0.7
 aikakerroin = 0.035 # alkuperäinen 0.025
-hännän_pituus = 1000 # pidennetty 300 -> 1000
+hännän_pituus = 1500 # pidennetty 300 -> 1000
 
 # --- 2. ALUSTUS ---
 plt.style.use('dark_background')
