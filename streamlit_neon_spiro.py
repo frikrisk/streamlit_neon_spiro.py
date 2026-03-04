@@ -23,7 +23,7 @@ keltainen_vauhti = st.sidebar.slider("Yellow Tracer Speed", 1.0, 20.0, 10.0)
 
 # Kiinteät parametrit
 d_sis, d_ulk = 0.4, 0.7
-aikakerroin = 0.025
+aikakerroin = 0.06 # alkuperäinen 0.025
 hännän_pituus = 300 # Lyhennetty hieman Streamlitin nopeuden takia
 
 # --- 2. ALUSTUS ---
@@ -108,10 +108,10 @@ with st.sidebar:
 
 if render_button:
     with st.spinner("Calculating neon paths..."):
-        # frames=120 on hyvä kompromissi nopeuden ja keston välillä
-        ani = FuncAnimation(fig, update, frames=120, interval=50, blit=True)
-        # Kasvatetaan heightia, jotta soittimen säätimet mahtuvat varmasti
-        components.html(ani.to_jshtml(), height=900)
+        # 150 framea riittää nyt kattamaan pitkän matkan, koska aikakerroin on suurempi
+        ani = FuncAnimation(fig, update, frames=150, interval=50, blit=True)
+        # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
+        components.html(ani.to_jshtml(), height=800)
 else:
     st.write("### Welcome! Adjust the sliders and press the button in the sidebar to start.")
     # Näytetään vaikka staattinen kuva alkajaisiksi
