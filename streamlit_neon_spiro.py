@@ -24,7 +24,7 @@ keltainen_vauhti = st.sidebar.slider("Yellow Tracer Speed", 1.0, 20.0, 10.0)
 # Kiinteät parametrit
 d_sis, d_ulk = 0.4, 0.7
 aikakerroin = 0.06 # alkuperäinen 0.025
-hännän_pituus = 300 # Lyhennetty hieman Streamlitin nopeuden takia
+hännän_pituus = 1000 # pidennetty 300 -> 1000
 
 # --- 2. ALUSTUS ---
 plt.style.use('dark_background')
@@ -96,7 +96,7 @@ def update(frame):
         sisä_jälki_coll.set_segments(segments)
         sisä_jälki_coll.set_array(np.linspace(0, 1, len(segments)))
 
-    ax.set_xlim(cx_i - 10, cx_i + 10)
+    ax.set_xlim(cx_i - 25, cx_i + 5)
     ax.set_ylim(-3, 7)
     
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
