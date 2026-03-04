@@ -121,7 +121,7 @@ with st.sidebar:
 if render_button:
     with st.spinner("Generating high-quality animation..."):
         # 150 framea riittää nyt kattamaan pitkän matkan, koska aikakerroin on suurempi
-        ani = FuncAnimation(fig, update, frames=350, interval=30, blit=True)
+        ani = FuncAnimation(fig, update, frames=frames_lkm, interval=30, blit=True)
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
         components.html(ani.to_jshtml(), height=800, scrolling=False)
 else:
