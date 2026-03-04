@@ -104,9 +104,8 @@ def update(frame):
 # --- 4. ANIMAATION GENERONTIA ---
 # Streamlitissä frames kannattaa pitää kohtuullisena (esim. 300-400
 if st.sidebar.button("Render Animation"):
-with st.spinner("Generating animation... This may take a few seconds..."):
-    ani = FuncAnimation(fig, update, frames=150, interval=40, blit=True)
-    components.html(ani.to_jshtml(), height=700)
-
+    with st.spinner("Generating animation... This may take a few seconds."):
+        ani = FuncAnimation(fig, update, frames=150, interval=40, blit=True)
+        components.html(ani.to_jshtml(), height=700)
 else:
     st.info("Adjust parameters on the left and click 'Render Animation' to see the result.")
