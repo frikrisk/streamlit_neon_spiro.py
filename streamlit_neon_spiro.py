@@ -9,12 +9,19 @@ import matplotlib
 # Pakotetaan matplotlib käyttämään 'Agg'-backendia (tärkeä pilvipalveluissa)
 matplotlib.use('Agg')
 
-st.set_page_config(page_title="Neon Spirograph", layout="wide")
-st.title("🛰️ Neon Spirograph Simulator")
+# 1. Poistetaan ylämarginaali ja optimoidaan tila
+st.markdown("""
+    <style>
+        .block-container { padding-top: 1rem; padding-bottom: 0rem; }
+        h1 { margin-top: -2rem; }
+    </style>
+""", unsafe_allow_html=True)
+
+st.title("🛰️ Neon Spirograph")
 
 # --- 1. SIDEBAR-SÄÄTIMET (Määritellään muuttujat ennen käyttöä) ---
 st.sidebar.header("Parameters")
-R = st.sidebar.slider("Main Circle Radius (R)", 0.5, 3.0, 1.5)
+R = st.sidebar.slider("Main Circle Radius (R)", 0.5, 2.0, 1.2)
 r_sis = st.sidebar.slider("Inner Circle Radius", 0.1, 1.0, 0.5)
 r_ulk = st.sidebar.slider("Outer Circle Radius", 0.1, 1.5, 0.8)
 aalto_amp = st.sidebar.slider("Wave Amplitude", 0.0, 2.0, 1.0)
@@ -23,14 +30,14 @@ keltainen_vauhti = st.sidebar.slider("Yellow Tracer Speed", 1.0, 20.0, 10.0)
 
 # Kiinteät parametrit
 d_sis, d_ulk = 0.4, 0.7
-aikakerroin = 0.06 # alkuperäinen 0.025
+aikakerroin = 0.035 # alkuperäinen 0.025
 hännän_pituus = 1000 # pidennetty 300 -> 1000
 
 # --- 2. ALUSTUS ---
 plt.style.use('dark_background')
 fig, ax = plt.subplots(figsize=(10, 7))
 ax.set_aspect('equal')
-ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
+ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5) # ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
 
 # Luodaan artistit (kuten aiemmin)
 iso_kehä, = ax.plot([], [], color='#96D7FF', lw=1.0)
@@ -96,8 +103,9 @@ def update(frame):
         sisä_jälki_coll.set_segments(segments)
         sisä_jälki_coll.set_array(np.linspace(0, 1, len(segments)))
 
-    ax.set_xlim(cx_i - 15, cx_i + 4)
-    ax.set_ylim(-3, 6)
+    ax.set_xlim (-2, 22) # (cx_i - 15, cx_i + 4)
+    ax.set_ylim(-2, 8)
+    ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
     
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
 
@@ -107,11 +115,11 @@ with st.sidebar:
     render_button = st.button("🚀 Render Animation")
 
 if render_button:
-    with st.spinner("Calculating neon paths..."):
+    with st.spinner("Generating high-quality animation..."):
         # 150 framea riittää nyt kattamaan pitkän matkan, koska aikakerroin on suurempi
-        ani = FuncAnimation(fig, update, frames=150, interval=50, blit=True)
+        ani = FuncAnimation(fig, update, frames=250, interval=30, blit=True)
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
-        components.html(ani.to_jshtml(), height=800)
+        components.html(ani.to_jshtml(), height=900)
 else:
     st.write("### Welcome! Adjust the sliders and press the button in the sidebar to start.")
     # Näytetään vaikka staattinen kuva alkajaisiksi
