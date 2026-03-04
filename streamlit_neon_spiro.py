@@ -9,27 +9,20 @@ import matplotlib
 # Pakotetaan matplotlib käyttämään 'Agg'-backendia (tärkeä pilvipalveluissa)
 matplotlib.use('Agg')
 
+st.set_page_config(layout="wide", page_title="Neon Spirograph")
+
 # 1. Poistetaan ylämarginaali ja optimoidaan tila
 st.markdown("""
     <style>
-        /* Poistaa tyhjän tilan sivun yläreunasta */
+        <style>
         .block-container {
-            padding-top: 0rem;
+            padding-top: 1.5rem; /* Jätetään hieman tilaa otsikolle */
             padding-bottom: 0rem;
-            margin-top: -5rem; /* Nostaa sisältöä ylöspäin */
+            margin-top: -1rem;    /* Kohtuullinen nosto */
         }
-        /* Piilottaa Streamlitin oman yläpalkin jos haluat */
-        # header {visibility: hidden;}
-        /* Siirtää sisällön vasempaan reunaan */
         .main .block-container {
-            max-width: 95%;
-            padding-left: 2rem;
-            margin-left: 0;
-        }
-        /* Poistaa soittimen ympäriltä turhia reunoja */
-        iframe {
-            display: block;
-            margin-left: 0;
+            max-width: 98%;
+            padding-left: 1rem;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -133,7 +126,7 @@ def update(frame):
     ax.set_xlim (-2, 25) # (cx_i - 15, cx_i + 4)
     ax.set_ylim(-3, 7)
     # Asetetaan näkyvä ruudukko
-    ax.grid(True, which='both', color='#555555', linestyle='--', linewidth=0.5)
+    ax.grid(True, which='both', color='#666666', linestyle='--', linewidth=0.5)
     # Varmistetaan, että ruudukko on piirrosten takana (zorder)
     ax.set_axisbelow(True) 
     
