@@ -102,7 +102,11 @@ def update(frame):
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
 
 # --- 4. ANIMAATION GENERONTIA ---
-# Streamlitissä frames kannattaa pitää kohtuullisena (esim. 300-400)
-with st.spinner("Generating animation..."):
-    ani = FuncAnimation(fig, update, frames=300, interval=30, blit=True)
+# Streamlitissä frames kannattaa pitää kohtuullisena (esim. 300-400
+if st.sidebar.button("Render Animation"):
+with st.spinner(""Generating animation... This may take a few seconds."):
+    ani = FuncAnimation(fig, update, frames=150, interval=40, blit=True)
     components.html(ani.to_jshtml(), height=700)
+
+else:
+    st.info("Adjust parameters on the left and click 'Render Animation' to see the result.")
