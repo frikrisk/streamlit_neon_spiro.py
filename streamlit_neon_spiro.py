@@ -96,7 +96,7 @@ def update(frame):
         sisä_jälki_coll.set_segments(segments)
         sisä_jälki_coll.set_array(np.linspace(0, 1, len(segments)))
 
-    ax.set_xlim(cx_i - 12, cx_i + 5)
+    ax.set_xlim(cx_i - 15, cx_i + 4)
     ax.set_ylim(-3, 6)
     
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
