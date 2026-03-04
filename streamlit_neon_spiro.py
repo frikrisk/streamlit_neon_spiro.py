@@ -12,10 +12,20 @@ matplotlib.use('Agg')
 # 1. Poistetaan ylämarginaali ja optimoidaan tila
 st.markdown("""
     <style>
-        .block-container { padding-top: 1rem; padding-bottom: 0rem; }
-        h1 { margin-top: -2rem; }
+        /* Siirtää sisällön vasempaan reunaan */
+        .main .block-container {
+            max-width: 95%;
+            padding-left: 2rem;
+            margin-left: 0;
+        }
+        /* Poistaa soittimen ympäriltä turhia reunoja */
+        iframe {
+            display: block;
+            margin-left: 0;
+        }
     </style>
 """, unsafe_allow_html=True)
+st.set_page_config(layout="wide")
 
 st.title("🛰️ Neon Spirograph")
 
@@ -128,7 +138,7 @@ if render_button:
         # 150 framea riittää nyt kattamaan pitkän matkan, koska aikakerroin on suurempi
         ani = FuncAnimation(fig, update, frames=frames_lkm, interval=interval_ms, blit=True)
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
-        components.html(ani.to_jshtml(), height=800,) # scrolling=False)
+        components.html(ani.to_jshtml(), height=800, width=1200)
 else:
     st.write("### Start: adjust the sliders and press Render")
     # Näytetään vaikka staattinen kuva alkajaisiksi
