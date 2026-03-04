@@ -31,17 +31,17 @@ keltainen_vauhti = st.sidebar.slider("Yellow Tracer Speed", 1.0, 20.0, 10.0)
 # Kiinteät parametrit
 d_sis, d_ulk = 0.4, 0.7
 aikakerroin = 0.035 # alkuperäinen 0.025
-hännän_pituus = 1500 # pidennetty 300 -> 1000
+hännän_pituus = 1000 # pidennetty 300 -> 1000
 
 # --- 2. ALUSTUS ---
 plt.style.use('dark_background')
-fig, ax = plt.subplots(figsize=(10, 7))
+fig, ax = plt.subplots(figsize=(14, 7))
 ax.set_aspect('equal')
 ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5) # ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
 
 # 3. Säädetään numeroiden ja merkkiasteikon (ticks) väri
 ax.tick_params(axis='both', colors='#888888', labelsize=10)
-ax.axis('on') # oli off, kokeillan on
+ax.axis('on') # oli off, kokeillaan on
 
 # Luodaan artistit (kuten aiemmin)
 iso_kehä, = ax.plot([], [], color='#96D7FF', lw=1.0)
@@ -107,9 +107,9 @@ def update(frame):
         sisä_jälki_coll.set_segments(segments)
         sisä_jälki_coll.set_array(np.linspace(0, 1, len(segments)))
 
-    ax.set_xlim (-2, 22) # (cx_i - 15, cx_i + 4)
+    ax.set_xlim (-2, 25) # (cx_i - 15, cx_i + 4)
     ax.set_ylim(-3, 7)
-    ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5, alpha=0.5)
+    ax.grid(True, which='both', color='#444444', linestyle=':', linewidth=0.5,) # alpha=0.5)
     
     return iso_kehä, sisä_kehä, ulko_kehä, iso_rata, ulko_jälki, sisä_jälki_coll, varsi_sisä, varsi_ulko, piste_sisä, piste_ulko, piste_iso
 
@@ -121,9 +121,9 @@ with st.sidebar:
 if render_button:
     with st.spinner("Generating high-quality animation..."):
         # 150 framea riittää nyt kattamaan pitkän matkan, koska aikakerroin on suurempi
-        ani = FuncAnimation(fig, update, frames=250, interval=30, blit=True)
+        ani = FuncAnimation(fig, update, frames=350, interval=30, blit=True)
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
-        components.html(ani.to_jshtml(), height=900)
+        components.html(ani.to_jshtml(), height=800, scrolling=False)
 else:
     st.write("### Start: adjust the sliders and press Render")
     # Näytetään vaikka staattinen kuva alkajaisiksi
