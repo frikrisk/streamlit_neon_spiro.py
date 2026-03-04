@@ -125,7 +125,7 @@ if render_button:
         # JSHTML-soitin tarvitsee tilaa napeille, pidetään height korkeana
         components.html(ani.to_jshtml(), height=900)
 else:
-    st.write("### Welcome! Adjust the sliders and press the button in the sidebar to start.")
+    st.write("### T start: Adjust the sliders and press render")
     # Näytetään vaikka staattinen kuva alkajaisiksi
     update(0)
     st.pyplot(fig)
