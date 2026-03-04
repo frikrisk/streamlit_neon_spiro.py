@@ -62,6 +62,9 @@ x_sis_t, y_sis_t = [], []
 x_ulko_t, y_ulko_t = [], []
 
 def update(frame):
+    # Kerrotaan funktiolle, että nämä muuttujat tulevat funktion ulkopuolelta
+    global aalto_amp, aalto_freq, R, r_sis, r_ulk, d_sis, d_ulk, keltainen_vauhti, aikakerroin
+    
     t = frame * aikakerroin
     cx_i = R * t
     cy_i = R + aalto_amp * np.sin(aalto_freq * t)
